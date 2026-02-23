@@ -2,9 +2,16 @@
 <html lang="es-MX">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Óptica Lumen Escobedo | Examen de la Vista Gratuito</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#1e3a5f">
+    <meta name="description" content="Examen de la vista GRATIS en Escobedo. Resultados en 20 min. Agenda por WhatsApp. Óptica Lumen - 4.9 estrellas en Google.">
+    <title>Examen Vista Gratis Escobedo | Óptica Lumen</title>
+    
+    <!-- Preconnect para velocidad -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --navy: #1e3a5f;
@@ -13,128 +20,126 @@
             --white: #ffffff;
             --gray-50: #f8fafc;
             --gray-100: #f1f5f9;
-            --gray-200: #e2e8f0;
-            --gray-600: #475569;
+            --gray-600: #64748b;
             --gray-800: #1e293b;
-            --accent: #25d366; /* WhatsApp green */
+            --whatsapp: #25d366;
+            --whatsapp-dark: #128c7e;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         html {
             scroll-behavior: smooth;
+            font-size: 16px;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             color: var(--gray-800);
-            line-height: 1.6;
-            background-color: var(--white);
+            line-height: 1.5;
+            background: var(--white);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* WhatsApp Float Button */
-        .whatsapp-float {
+        /* WhatsApp Flotante - Mobile Optimized */
+        .wa-float {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #25d366;
-            color: white;
+            bottom: 20px;
+            right: 20px;
             width: 60px;
             height: 60px;
+            background: var(--whatsapp);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
-            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
             z-index: 9999;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            animation: pulse 2s infinite;
+            animation: pulse-wa 2s infinite;
+            border: 3px solid white;
         }
 
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        .wa-float svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        @keyframes pulse-wa {
+            0%, 100% { transform: scale(1); box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6); }
         }
 
-        .whatsapp-tooltip {
+        .wa-tooltip {
             position: fixed;
-            bottom: 100px;
-            right: 30px;
+            bottom: 90px;
+            right: 20px;
             background: var(--navy-dark);
             color: white;
-            padding: 10px 16px;
-            border-radius: 8px;
-            font-size: 13px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 14px;
             font-weight: 500;
+            max-width: 200px;
             opacity: 0;
             transform: translateY(10px);
             transition: all 0.3s;
             pointer-events: none;
             z-index: 9998;
-            max-width: 200px;
-            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
-        .whatsapp-tooltip::after {
+        .wa-tooltip::after {
             content: '';
             position: absolute;
-            bottom: -6px;
-            right: 20px;
-            width: 0;
-            height: 0;
-            border-left: 6px solid transparent;
-            border-right: 6px solid transparent;
-            border-top: 6px solid var(--navy-dark);
+            bottom: -8px;
+            right: 24px;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid var(--navy-dark);
         }
 
-        .whatsapp-float:hover + .whatsapp-tooltip,
-        .whatsapp-tooltip.show {
+        .wa-tooltip.show {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Navigation */
+        /* Navegación Mobile-First */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
             background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--gray-200);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--gray-100);
             z-index: 1000;
-            padding: 1rem 0;
+            padding: 12px 0;
         }
 
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 600;
+            font-size: 20px;
+            font-weight: 700;
             color: var(--navy);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 8px;
         }
 
         .logo-icon {
@@ -146,134 +151,80 @@
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.2rem;
+            font-size: 16px;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--gray-600);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--navy);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
+        .menu-btn {
             background: var(--navy);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .cta-nav {
-            background: var(--navy);
-            color: white !important;
-            padding: 0.6rem 1.5rem;
-            border-radius: 6px;
-            transition: all 0.3s;
-        }
-
-        .cta-nav:hover {
-            background: var(--navy-light);
-            transform: translateY(-1px);
-        }
-
-        .cta-nav::after {
-            display: none !important;
-        }
-
-        /* Hero Section */
-        .hero {
-            margin-top: 80px;
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(30, 58, 95, 0.03) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-content h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            color: var(--navy-dark);
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
             font-weight: 600;
+            cursor: pointer;
+            touch-action: manipulation;
         }
 
-        .hero-content h1 span {
+        /* Hero Mobile */
+        .hero {
+            margin-top: 64px;
+            padding: 24px 16px 32px;
+            background: linear-gradient(180deg, var(--gray-50) 0%, var(--white) 100%);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(37, 211, 102, 0.1);
+            color: var(--whatsapp-dark);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--navy-dark);
+            line-height: 1.2;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero h1 span {
             color: var(--navy);
-            position: relative;
             display: block;
-            margin-top: 0.5rem;
+            margin-top: 4px;
         }
 
         .hero-subtitle {
-            font-size: 1.25rem;
+            font-size: 17px;
             color: var(--gray-600);
-            margin-bottom: 2rem;
-            font-weight: 400;
-            line-height: 1.7;
+            margin-bottom: 24px;
+            line-height: 1.6;
         }
 
-        .hero-benefits {
+        /* Beneficios Compactos */
+        .benefits-list {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 2.5rem;
+            gap: 12px;
+            margin-bottom: 28px;
         }
 
         .benefit-item {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 12px;
+            font-size: 15px;
             color: var(--gray-800);
-            font-size: 1rem;
         }
 
-        .benefit-icon {
+        .benefit-check {
             width: 24px;
             height: 24px;
             background: var(--navy);
@@ -282,590 +233,444 @@
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 0.8rem;
+            font-size: 12px;
             flex-shrink: 0;
         }
 
+        /* CTAs Mobile - Full Width */
         .cta-group {
             display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .cta-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            min-height: 56px;
+            touch-action: manipulation;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-btn:active {
+            transform: scale(0.98);
         }
 
         .cta-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
             background: var(--navy);
             color: white;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.05rem;
-            transition: all 0.3s;
-            box-shadow: 0 4px 6px -1px rgba(30, 58, 95, 0.2);
-        }
-
-        .cta-primary:hover {
-            background: var(--navy-light);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(30, 58, 95, 0.3);
+            box-shadow: 0 4px 12px rgba(30, 58, 95, 0.3);
         }
 
         .cta-whatsapp {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: #25d366;
+            background: var(--whatsapp);
             color: white;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.05rem;
-            transition: all 0.3s;
-            box-shadow: 0 4px 6px -1px rgba(37, 211, 102, 0.3);
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
         }
 
-        .cta-whatsapp:hover {
-            background: #128c7e;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(37, 211, 102, 0.4);
-        }
-
-        .hero-image {
+        /* Hero Image Mobile */
+        .hero-image-container {
             position: relative;
-            border-radius: 20px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
 
-        .hero-image img {
+        .hero-image-container img {
             width: 100%;
-            height: 600px;
+            height: 280px;
             object-fit: cover;
             display: block;
         }
 
-        .floating-card {
+        .review-card {
             position: absolute;
-            bottom: 40px;
-            left: -30px;
+            bottom: 16px;
+            left: 16px;
+            right: 16px;
             background: white;
-            padding: 1.25rem 1.5rem;
+            padding: 16px;
             border-radius: 12px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            max-width: 260px;
-            border-left: 4px solid var(--navy);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        .floating-card-header {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .stars {
+        .review-stars {
             color: #fbbf24;
-            font-size: 0.9rem;
-            letter-spacing: -2px;
+            font-size: 14px;
+            margin-bottom: 6px;
         }
 
-        .floating-card h4 {
+        .review-text {
+            font-size: 14px;
+            color: var(--gray-800);
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .review-author {
+            font-size: 13px;
             color: var(--navy);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
             font-weight: 600;
         }
 
-        .floating-card p {
-            color: var(--gray-600);
-            font-size: 0.9rem;
-            line-height: 1.5;
-            margin: 0;
-        }
-
         /* Social Proof Bar */
-        .social-proof-bar {
+        .social-bar {
             background: var(--navy);
             color: white;
-            padding: 1.25rem 0;
-            position: relative;
-            z-index: 10;
-        }
-
-        .social-proof-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
+            padding: 16px;
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
             align-items: center;
-            gap: 3rem;
-            flex-wrap: wrap;
+            gap: 16px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
-        .social-proof-item {
+        .social-item {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            font-size: 0.95rem;
+            gap: 8px;
+            font-size: 13px;
+            white-space: nowrap;
         }
 
-        .social-proof-item strong {
-            font-size: 1.1rem;
+        .social-item strong {
+            font-size: 15px;
+            display: block;
         }
 
-        .google-stars {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(255,255,255,0.1);
-            padding: 0.5rem 1rem;
+        .google-badge {
+            background: rgba(255,255,255,0.15);
+            padding: 6px 12px;
             border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .google-logo {
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-
-        /* Services Section */
-        .services {
-            padding: 6rem 0;
-            background: var(--white);
+        /* Secciones Generales */
+        section {
+            padding: 48px 16px;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 32px;
         }
 
         .section-tag {
             display: inline-block;
             color: var(--navy);
-            font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 12px;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-            position: relative;
-        }
-
-        .section-tag::before,
-        .section-tag::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 30px;
-            height: 1px;
-            background: var(--navy);
-        }
-
-        .section-tag::before {
-            right: calc(100% + 15px);
-        }
-
-        .section-tag::after {
-            left: calc(100% + 15px);
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
         }
 
         .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: 26px;
+            font-weight: 700;
             color: var(--navy-dark);
-            margin-bottom: 1rem;
-            font-weight: 500;
+            margin-bottom: 12px;
+            line-height: 1.3;
         }
 
         .section-subtitle {
             color: var(--gray-600);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
+            font-size: 16px;
+            line-height: 1.6;
         }
 
+        /* Servicios Cards */
         .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
 
         .service-card {
             background: var(--gray-50);
-            padding: 3rem 2rem;
+            padding: 24px;
             border-radius: 16px;
-            text-align: center;
-            transition: all 0.3s;
-            border: 1px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--navy);
-            transform: scaleX(0);
-            transition: transform 0.3s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--gray-200);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
-        }
-
-        .service-card:hover::before {
-            transform: scaleX(1);
+            border-left: 4px solid var(--navy);
         }
 
         .service-icon {
-            width: 80px;
-            height: 80px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            color: var(--navy);
+            font-size: 32px;
+            margin-bottom: 12px;
         }
 
         .service-card h3 {
-            font-size: 1.25rem;
+            font-size: 18px;
+            font-weight: 700;
             color: var(--navy-dark);
-            margin-bottom: 1rem;
-            font-weight: 600;
+            margin-bottom: 8px;
         }
 
         .service-card p {
+            font-size: 15px;
             color: var(--gray-600);
-            font-size: 0.95rem;
-            line-height: 1.7;
+            line-height: 1.6;
         }
 
-        /* Frames Catalog Section */
-        .frames {
-            padding: 6rem 0;
+        /* Catálogo Horizontal Scroll */
+        .frames-section {
             background: var(--gray-50);
         }
 
-        .frames-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin-top: 3rem;
+        .frames-scroll {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 16px;
+            margin: 0 -16px;
+            padding-left: 16px;
+            padding-right: 16px;
         }
 
         .frame-card {
+            flex: 0 0 280px;
             background: white;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s;
-            position: relative;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            scroll-snap-align: start;
         }
 
-        .frame-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-
-        .frame-image {
+        .frame-img {
             width: 100%;
-            height: 250px;
+            height: 200px;
             background: var(--gray-100);
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            overflow: hidden;
         }
 
-        .frame-image img {
-            width: 80%;
+        .frame-img img {
+            width: 70%;
             height: auto;
             object-fit: contain;
-            transition: transform 0.3s;
-        }
-
-        .frame-card:hover .frame-image img {
-            transform: scale(1.05);
         }
 
         .frame-badge {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
+            top: 12px;
+            right: 12px;
             background: var(--navy);
             color: white;
-            padding: 0.25rem 0.75rem;
+            padding: 4px 12px;
             border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
+            font-size: 11px;
+            font-weight: 700;
         }
 
         .frame-info {
-            padding: 1.5rem;
+            padding: 16px;
         }
 
         .frame-brand {
+            font-size: 12px;
             color: var(--gray-600);
-            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 0.25rem;
+            margin-bottom: 4px;
         }
 
         .frame-name {
+            font-size: 16px;
+            font-weight: 700;
             color: var(--navy-dark);
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 8px;
         }
 
         .frame-price {
-            color: var(--navy);
+            font-size: 18px;
             font-weight: 700;
-            font-size: 1.25rem;
-        }
-
-        .view-all-btn {
-            display: block;
-            width: fit-content;
-            margin: 3rem auto 0;
-            padding: 1rem 2.5rem;
-            border: 2px solid var(--navy);
             color: var(--navy);
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s;
         }
 
-        .view-all-btn:hover {
+        .scroll-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .scroll-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--gray-200);
+            border-radius: 50%;
+        }
+
+        .scroll-dot.active {
+            background: var(--navy);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* Formulario Mobile */
+        .appointment-section {
             background: var(--navy);
             color: white;
+            padding: 48px 16px;
         }
 
-        /* Appointment Section */
-        .appointment {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .appointment::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.1;
-        }
-
-        .appointment-container {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .appointment .section-header {
+        .appointment-section .section-title {
             color: white;
         }
 
-        .appointment .section-title {
-            color: white;
+        .appointment-section .section-subtitle {
+            color: rgba(255,255,255,0.8);
         }
 
-        .appointment .section-subtitle {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .appointment-form {
-            background: rgba(255, 255, 255, 0.05);
+        .form-card {
+            background: rgba(255,255,255,0.1);
             backdrop-filter: blur(10px);
-            padding: 3rem;
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 3rem;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
+            padding: 24px;
+            margin-top: 24px;
         }
 
         .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-group.full-width {
-            grid-column: 1 / -1;
+            margin-bottom: 20px;
         }
 
         .form-group label {
-            font-size: 0.9rem;
+            display: block;
+            font-size: 14px;
             font-weight: 500;
-            margin-bottom: 0.5rem;
-            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 8px;
+            color: rgba(255,255,255,0.9);
         }
 
         .form-group input,
         .form-group select,
         .form-group textarea {
-            padding: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
+            width: 100%;
+            padding: 16px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
             color: white;
-            font-size: 1rem;
-            transition: all 0.3s;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: rgba(255, 255, 255, 0.5);
-            background: rgba(255, 255, 255, 0.1);
+            font-size: 16px;
+            font-family: inherit;
+            -webkit-appearance: none;
         }
 
         .form-group input::placeholder,
         .form-group textarea::placeholder {
-            color: rgba(255, 255, 255, 0.4);
+            color: rgba(255,255,255,0.5);
         }
 
-        .form-group select option {
-            background: var(--navy-dark);
-            color: white;
-        }
-
-        .submit-btn {
-            grid-column: 1 / -1;
+        .form-submit {
+            width: 100%;
+            padding: 18px;
             background: white;
             color: var(--navy);
-            padding: 1.25rem;
             border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 1rem;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 16px;
+            touch-action: manipulation;
         }
 
         .form-divider {
-            grid-column: 1 / -1;
             text-align: center;
-            margin: 0.5rem 0;
+            margin: 16px 0;
             position: relative;
         }
 
         .form-divider::before {
             content: 'O';
-            color: rgba(255,255,255,0.5);
-            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
             background: rgba(255,255,255,0.1);
-            padding: 0.5rem 1rem;
+            padding: 8px 16px;
             border-radius: 20px;
         }
 
-        .whatsapp-form-btn {
-            grid-column: 1 / -1;
-            background: #25d366;
+        .wa-form-btn {
+            width: 100%;
+            padding: 18px;
+            background: var(--whatsapp);
             color: white;
-            padding: 1.25rem;
             border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
+            gap: 8px;
             text-decoration: none;
-        }
-
-        .whatsapp-form-btn:hover {
-            background: #128c7e;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
         .form-note {
             text-align: center;
-            margin-top: 1.5rem;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+            margin-top: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
+            gap: 6px;
         }
 
         /* Footer */
         footer {
             background: var(--navy-dark);
             color: white;
-            padding: 4rem 0 2rem;
+            padding: 40px 16px 24px;
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            margin-bottom: 32px;
         }
 
         .footer-brand .logo {
             color: white;
-            margin-bottom: 1rem;
+            margin-bottom: 12px;
         }
 
         .footer-brand p {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.8;
-            font-size: 0.95rem;
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+            line-height: 1.7;
         }
 
         .footer-column h4 {
-            color: white;
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
+            font-size: 14px;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-bottom: 16px;
+            color: white;
         }
 
         .footer-column ul {
@@ -873,426 +678,347 @@
         }
 
         .footer-column li {
-            margin-bottom: 0.75rem;
+            margin-bottom: 12px;
         }
 
         .footer-column a {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255,255,255,0.7);
             text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-        }
-
-        .footer-column a:hover {
-            color: white;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 24px;
+            text-align: center;
         }
 
         .footer-bottom p {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
+            color: rgba(255,255,255,0.5);
+            font-size: 13px;
+            margin-bottom: 16px;
         }
 
         .social-links {
             display: flex;
-            gap: 1rem;
+            justify-content: center;
+            gap: 16px;
         }
 
         .social-links a {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
+            width: 44px;
+            height: 44px;
+            background: rgba(255,255,255,0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             text-decoration: none;
-            transition: all 0.3s;
+            font-size: 20px;
         }
 
-        .social-links a:hover {
-            background: var(--navy-light);
-            transform: translateY(-2px);
+        /* Utilidades Mobile */
+        .text-center { text-align: center; }
+        .mt-4 { margin-top: 16px; }
+        
+        /* Ocultar en mobile, mostrar en desktop */
+        @media (max-width: 767px) {
+            .desktop-only { display: none !important; }
         }
 
-        /* Responsive */
-        @media (max-width: 968px) {
+        /* Desktop mejoras */
+        @media (min-width: 768px) {
+            .mobile-only { display: none !important; }
+            
+            html { font-size: 18px; }
+            
+            .hero {
+                padding: 80px 40px;
+            }
+            
+            .hero h1 { font-size: 52px; }
+            
             .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 3rem;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-benefits {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 60px;
                 align-items: center;
-            }
-
-            .cta-group {
-                justify-content: center;
-            }
-
-            .hero-image {
-                order: -1;
-                max-width: 500px;
+                max-width: 1200px;
                 margin: 0 auto;
             }
-
-            .hero-image img {
-                height: 400px;
-            }
-
-            .floating-card {
-                left: 20px;
-                right: 20px;
-                bottom: 20px;
-                max-width: none;
-            }
-
-            .social-proof-container {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-
+            
             .services-grid {
-                grid-template-columns: 1fr;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 24px;
             }
-
-            .frames-grid {
-                grid-template-columns: repeat(2, 1fr);
+            
+            .frames-scroll {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                overflow: visible;
             }
-
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-
+            
+            .frame-card { flex: none; }
+            
             .footer-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 2fr 1fr 1fr 1fr;
             }
-
-            .whatsapp-float {
-                width: 55px;
-                height: 55px;
-                font-size: 24px;
-                bottom: 20px;
-                right: 20px;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .nav-links {
-                display: none;
-            }
-
-            .frames-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .social-proof-container {
-                flex-direction: column;
-            }
-
-            .cta-group {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .cta-primary, .cta-whatsapp {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            animation: fadeInUp 0.8s ease forwards;
         }
     </style>
 </head>
 <body>
 
-    <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/528112345678?text=Hola,%20vi%20su%20página%20y%20quiero%20agendar%20un%20examen%20de%20la%20vista%20gratuito" class="whatsapp-float" target="_blank" aria-label="Contactar por WhatsApp">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-        </svg>
+    <!-- WhatsApp Flotante -->
+    <a href="https://wa.me/528112345678?text=Hola%20Óptica%20Lumen%2C%20quiero%20agendar%20mi%20examen%20de%20la%20vista%20gratuito%20en%20Escobedo" class="wa-float" target="_blank" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
     </a>
-    <div class="whatsapp-tooltip">¿Tienes dudas? Escríbenos por WhatsApp</div>
+    <div class="wa-tooltip">¿Dudas? Escríbenos 👋</div>
 
-    <!-- Navigation -->
+    <!-- Navegación -->
     <nav>
         <div class="nav-container">
             <a href="#" class="logo">
                 <div class="logo-icon">◉</div>
                 Óptica Lumen
             </a>
-            <ul class="nav-links">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#armazones">Armazones</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-                <li><a href="#agendar" class="cta-nav">Agendar Examen</a></li>
-            </ul>
+            <a href="https://wa.me/528112345678?text=Hola%2C%20quiero%20agendar%20examen%20gratis" class="menu-btn">Agendar</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero" id="inicio">
         <div class="hero-container">
             <div class="hero-content">
-                <h1>Vuelve a ver claro <span>hoy mismo</span></h1>
-                <p class="hero-subtitle">
-                    Examen de la vista gratuito en Escobedo. Sin compromiso de compra. 
-                    Resultados inmediatos y asesoría personalizada para encontrar la solución 
-                    perfecta para tus ojos.
-                </p>
+                <div class="hero-badge">
+                    <span>⚡</span>
+                    <span>Resultados en 20 min</span>
+                </div>
                 
-                <div class="hero-benefits">
+                <h1>Vuelve a ver claro <span>hoy mismo</span></h1>
+                
+                <p class="hero-subtitle">
+                    Examen de la vista <strong>GRATIS</strong> en Escobedo. Sin compromiso de compra. Optometrista certificado.
+                </p>
+
+                <div class="benefits-list">
                     <div class="benefit-item">
-                        <div class="benefit-icon">✓</div>
-                        <span>Resultados en 20 minutos</span>
+                        <div class="benefit-check">✓</div>
+                        <span>Equipos digitales de última generación</span>
                     </div>
                     <div class="benefit-item">
-                        <div class="benefit-icon">✓</div>
-                        <span>Equipos digitales de precisión</span>
+                        <div class="benefit-check">✓</div>
+                        <span>+500 pacientes satisfechos en Escobedo</span>
                     </div>
                     <div class="benefit-item">
-                        <div class="benefit-icon">✓</div>
-                        <span>Optometrista certificado COFEPRIS</span>
+                        <div class="benefit-check">✓</div>
+                        <span>4.9 ⭐ en Google Maps</span>
                     </div>
                 </div>
 
                 <div class="cta-group">
-                    <a href="#agendar" class="cta-primary">
-                        Agendar mi examen gratis
-                        <span>→</span>
+                    <a href="#agendar" class="cta-btn cta-primary">
+                        Agendar mi examen gratis →
                     </a>
-                    <a href="https://wa.me/528112345678?text=Hola,%20quiero%20agendar%20un%20examen%20de%20la%20vista" class="cta-whatsapp" target="_blank">
-                        <span>💬</span>
-                        WhatsApp Directo
+                    <a href="https://wa.me/528112345678?text=Hola%2C%20quiero%20agendar%20examen%20gratis" class="cta-btn cta-whatsapp">
+                        💬 WhatsApp Directo
                     </a>
                 </div>
             </div>
 
-            <div class="hero-image">
-                <img src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=800&q=80" alt="Paciente feliz con armazones modernos en Óptica Lumen Escobedo">
-                <div class="floating-card">
-                    <div class="floating-card-header">
-                        <span class="stars">★★★★★</span>
-                        <span style="color: var(--gray-600); font-size: 0.85rem;">4.9/5</span>
-                    </div>
-                    <p>"Me atendieron súper rápido y el doctor explicó todo muy bien. Mis lentes quedaron perfectos."</p>
-                    <p style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--navy); font-weight: 600;">— María G., Escobedo</p>
+            <div class="hero-image-container">
+                <img src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=600&q=80" alt="Paciente feliz con lentes en Óptica Lumen Escobedo" loading="lazy">
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Me atendieron súper rápido y el doctor explicó todo muy bien. Mis lentes quedaron perfectos."</p>
+                    <p class="review-author">— María G., Escobedo</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Social Proof Bar -->
-    <section class="social-proof-bar">
-        <div class="social-proof-container">
-            <div class="social-proof-item">
-                <span style="font-size: 1.3rem;">👥</span>
-                <span><strong>+500 pacientes</strong> atendidos en Escobedo</span>
-            </div>
-            <div class="google-stars">
-                <span class="google-logo">G</span>
-                <span style="color: #fbbf24; letter-spacing: -2px;">★★★★★</span>
-                <span>4.9 en Google</span>
-            </div>
-            <div class="social-proof-item">
-                <span style="font-size: 1.3rem;">✓</span>
-                <span><strong>Examen sin costo</strong> • Sin compromiso</span>
+    <!-- Social Proof -->
+    <div class="social-bar">
+        <div class="social-item">
+            <span>👥</span>
+            <div>
+                <strong>+500</strong>
+                <span style="opacity: 0.8;">pacientes</span>
             </div>
         </div>
-    </section>
+        <div class="google-badge">
+            <span style="font-weight: 700;">G</span>
+            <span style="color: #fbbf24;">★★★★★</span>
+            <span>4.9</span>
+        </div>
+        <div class="social-item">
+            <span>✓</span>
+            <div>
+                <strong>Gratis</strong>
+                <span style="opacity: 0.8;">sin compromiso</span>
+            </div>
+        </div>
+    </div>
 
-    <!-- Services Section -->
-    <section class="services" id="servicios">
+    <!-- Servicios -->
+    <section id="servicios">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Nuestros Servicios</span>
-                <h2 class="section-title">Todo para tu salud visual</h2>
-                <p class="section-subtitle">
-                    Desde el diagnóstico hasta el armazón perfecto. Un solo lugar, solución completa.
-                </p>
+                <span class="section-tag">Servicios</span>
+                <h2 class="section-title">Todo para tus ojos</h2>
+                <p class="section-subtitle">Desde el diagnóstico hasta el armazón perfecto. Un solo lugar.</p>
             </div>
 
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">👁</div>
                     <h3>Examen Computarizado</h3>
-                    <p>Evaluación completa de agudeza, refracción y salud ocular con equipos digitales. Resultados precisos en minutos, no en días.</p>
+                    <p>Evaluación completa con equipos digitales. Resultados precisos en minutos, no en días.</p>
                 </div>
-
                 <div class="service-card">
                     <div class="service-icon">👓</div>
                     <h3>Lentes de Contacto</h3>
-                    <p>Adaptación especializada con prueba gratuita. Manejamos tóricos para astigmatismo y multifocales. Incluye kit de inicio.</p>
+                    <p>Adaptación especializada. Prueba gratuita y kit de inicio incluido.</p>
                 </div>
-
                 <div class="service-card">
                     <div class="service-icon">🔧</div>
-                    <h3>Ajuste y Reparación</h3>
-                    <p>Ajuste profesional de armazones, cambio de plaquetas, soldadura y mantenimiento. Garantía de adaptación incluida.</p>
+                    <h3>Reparación Express</h3>
+                    <p>Ajustes, soldadura y mantenimiento. Garantía de adaptación.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Frames Catalog Section -->
-    <section class="frames" id="armazones">
+    <!-- Catálogo -->
+    <section class="frames-section" id="armazones">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">Catálogo</span>
-                <h2 class="section-title">Armazones que se ven bien en ti</h2>
-                <p class="section-subtitle">
-                    Prueba antes de comprar. Tenemos espejos de realidad aumentada y asesoría de estilo incluida.
-                </p>
+                <h2 class="section-title">Armazones destacados</h2>
+                <p class="section-subtitle">Desliza para ver más modelos. Todos con prueba física incluida.</p>
             </div>
 
-            <div class="frames-grid">
+            <div class="frames-scroll">
                 <div class="frame-card">
-                    <div class="frame-image">
-                        <span class="frame-badge">Más vendido</span>
-                        <img src="https://images.pexels.com/photos/28881363/pexels-photo-28881363/free-photo-of-stylish-eyeglasses-on-minimalist-beige-background.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=400" alt="Armazón clásico elegante">
+                    <div class="frame-img">
+                        <span class="frame-badge">TOP</span>
+                        <img src="https://images.pexels.com/photos/28881363/pexels-photo-28881363/free-photo-of-stylish-eyeglasses-on-minimalist-beige-background.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Classic Titanium" loading="lazy">
                     </div>
                     <div class="frame-info">
                         <div class="frame-brand">Diseño Italiano</div>
                         <div class="frame-name">Classic Titanium</div>
-                        <div class="frame-price">Desde $1,890</div>
+                        <div class="frame-price">$1,890</div>
                     </div>
                 </div>
 
                 <div class="frame-card">
-                    <div class="frame-image">
-                        <img src="https://images.pexels.com/photos/29467509/pexels-photo-29467509/free-photo-of-stylish-eyewear-display-with-minimalist-aesthetic.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=400" alt="Armazón moderno urbano">
+                    <div class="frame-img">
+                        <img src="https://images.pexels.com/photos/29467509/pexels-photo-29467509/free-photo-of-stylish-eyewear-display-with-minimalist-aesthetic.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Seoul Transparent" loading="lazy">
                     </div>
                     <div class="frame-info">
                         <div class="frame-brand">Estilo Coreano</div>
                         <div class="frame-name">Seoul Transparent</div>
-                        <div class="frame-price">Desde $1,450</div>
+                        <div class="frame-price">$1,450</div>
                     </div>
                 </div>
 
                 <div class="frame-card">
-                    <div class="frame-image">
-                        <span class="frame-badge">Nuevo</span>
-                        <img src="https://images.pexels.com/photos/28881363/pexels-photo-28881363/free-photo-of-stylish-eyeglasses-on-minimalist-beige-background.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=400" alt="Armazón premium ejecutivo">
+                    <div class="frame-img">
+                        <span class="frame-badge">NUEVO</span>
+                        <img src="https://images.pexels.com/photos/28881363/pexels-photo-28881363/free-photo-of-stylish-eyeglasses-on-minimalist-beige-background.jpeg?auto=compress&cs=tinysrgb&w=400" alt="CEO Navy" loading="lazy">
                     </div>
                     <div class="frame-info">
-                        <div class="frame-brand">Línea Ejecutiva</div>
+                        <div class="frame-brand">Ejecutivo</div>
                         <div class="frame-name">CEO Navy Blue</div>
-                        <div class="frame-price">Desde $2,340</div>
+                        <div class="frame-price">$2,340</div>
                     </div>
                 </div>
 
                 <div class="frame-card">
-                    <div class="frame-image">
-                        <img src="https://images.pexels.com/photos/29467509/pexels-photo-29467509/free-photo-of-stylish-eyewear-display-with-minimalist-aesthetic.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=400" alt="Armazón deportivo resistente">
+                    <div class="frame-img">
+                        <img src="https://images.pexels.com/photos/29467509/pexels-photo-29467509/free-photo-of-stylish-eyewear-display-with-minimalist-aesthetic.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Runner Flex" loading="lazy">
                     </div>
                     <div class="frame-info">
-                        <div class="frame-brand">Active Sport</div>
+                        <div class="frame-brand">Sport</div>
                         <div class="frame-name">Runner Flex</div>
-                        <div class="frame-price">Desde $1,990</div>
+                        <div class="frame-price">$1,990</div>
                     </div>
                 </div>
             </div>
 
-            <a href="https://wa.me/528112345678?text=Hola,%20quiero%20ver%20más%20modelos%20de%20armazones" class="view-all-btn" target="_blank">Ver más modelos por WhatsApp</a>
+            <div class="scroll-indicator">
+                <div class="scroll-dot active"></div>
+                <div class="scroll-dot"></div>
+                <div class="scroll-dot"></div>
+                <div class="scroll-dot"></div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="https://wa.me/528112345678?text=Hola%2C%20quiero%20ver%20más%20modelos%20de%20armazones" class="cta-btn cta-primary" style="max-width: 300px; margin: 0 auto;">
+                    Ver más por WhatsApp
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- Appointment Section -->
-    <section class="appointment" id="agendar">
-        <div class="appointment-container">
+    <!-- Formulario -->
+    <section class="appointment-section" id="agendar">
+        <div class="container">
             <div class="section-header">
-                <span class="section-tag" style="color: white;">Reserva tu cita</span>
-                <h2 class="section-title">Agenda tu examen gratuito</h2>
-                <p class="section-subtitle">
-                    Elige la forma más cómoda para ti. Respondemos en minutos por WhatsApp o confirma tu cita aquí.
-                </p>
+                <span class="section-tag" style="color: rgba(255,255,255,0.9);">Reserva</span>
+                <h2 class="section-title">Agenda tu examen gratis</h2>
+                <p class="section-subtitle">Elige cómo prefieres. Respondemos en minutos.</p>
             </div>
 
-            <form class="appointment-form" onsubmit="handleFormSubmit(event)">
-                <div class="form-grid">
+            <div class="form-card">
+                <form onsubmit="event.preventDefault(); this.querySelector('.form-submit').textContent='✓ Agendado. Te contactamos...';">
                     <div class="form-group">
                         <label for="nombre">Nombre completo *</label>
-                        <input type="text" id="nombre" name="nombre" placeholder="Ej. Carlos Méndez" required>
+                        <input type="text" id="nombre" placeholder="Ej. Carlos Méndez" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="telefono">WhatsApp *</label>
-                        <input type="tel" id="telefono" name="telefono" placeholder="(81) 1234 5678" required>
+                        <label for="tel">WhatsApp *</label>
+                        <input type="tel" id="tel" placeholder="(81) 1234 5678" required>
                     </div>
 
-                    <div class="form-group">
-                        <label for="fecha">Fecha que prefieres *</label>
-                        <input type="date" id="fecha" name="fecha" required>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                        <div class="form-group">
+                            <label for="fecha">Fecha *</label>
+                            <input type="date" id="fecha" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="hora">Horario *</label>
+                            <select id="hora" required>
+                                <option value="">Selecciona</option>
+                                <option value="morning">9-12 hrs</option>
+                                <option value="afternoon">12-15 hrs</option>
+                                <option value="evening">15-19 hrs</option>
+                            </select>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="horario">Horario *</label>
-                        <select id="horario" name="horario" required>
-                            <option value="">Selecciona</option>
-                            <option value="morning">Mañana (9:00 - 12:00)</option>
-                            <option value="afternoon">Tarde (12:00 - 15:00)</option>
-                            <option value="evening">Evening (15:00 - 19:00)</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label for="mensaje">¿Qué te gustaría revisar? (opcional)</label>
-                        <textarea id="mensaje" name="mensaje" rows="2" placeholder="Ej. Tengo dolor de cabeza frecuente, quiero cambiar mis lentes, etc."></textarea>
-                    </div>
-
-                    <button type="submit" class="submit-btn">
+                    <button type="submit" class="form-submit">
                         Confirmar mi cita gratuita
                     </button>
 
                     <div class="form-divider"></div>
 
-                    <a href="https://wa.me/528112345678?text=Hola,%20quiero%20agendar%20un%20examen%20de%20la%20vista%20gratuito" class="whatsapp-form-btn" target="_blank">
-                        <span>💬</span>
-                        Prefiero agendar por WhatsApp
+                    <a href="https://wa.me/528112345678?text=Hola%20Óptica%20Lumen%2C%20quiero%20agendar%20mi%20examen%20de%20la%20vista%20gratuito%20en%20Escobedo" class="wa-form-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                        Prefiero WhatsApp
                     </a>
-                </div>
+                </form>
 
                 <div class="form-note">
                     <span>🔒</span>
-                    <span>Tus datos solo los usa nuestro optometrista para confirmar tu cita</span>
+                    <span>Solo usamos tus datos para confirmar tu cita</span>
                 </div>
-            </form>
+            </div>
         </div>
     </section>
 
@@ -1305,20 +1031,24 @@
                         <div class="logo-icon">◉</div>
                         Óptica Lumen
                     </a>
-                    <p>
-                        Especialistas en salud visual en Escobedo, NL. Más de 500 familias 
-                        confían en nosotros para ver el mundo con claridad. Examen gratuito, 
-                        sin compromiso de compra.
-                    </p>
+                    <p>Especialistas en salud visual en Escobedo, NL. Más de 500 familias confían en nosotros.</p>
                 </div>
 
                 <div class="footer-column">
-                    <h4>Enlaces</h4>
+                    <h4>Horario</h4>
                     <ul>
-                        <li><a href="#inicio">Inicio</a></li>
-                        <li><a href="#servicios">Servicios</a></li>
-                        <li><a href="#armazones">Armazones</a></li>
-                        <li><a href="#agendar">Agendar cita</a></li>
+                        <li><a href="#">Lun-Vie: 9:00 - 19:00</a></li>
+                        <li><a href="#">Sábado: 9:00 - 14:00</a></li>
+                        <li><a href="#">Domingo: Cerrado</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li><a href="https://wa.me/528112345678">💬 WhatsApp</a></li>
+                        <li><a href="tel:8112345678">📞 (81) 1234 5678</a></li>
+                        <li><a href="#">📍 Escobedo, NL</a></li>
                     </ul>
                 </div>
 
@@ -1326,80 +1056,54 @@
                     <h4>Servicios</h4>
                     <ul>
                         <li><a href="#">Examen de la vista</a></li>
-                        <li><a href="#">Graduación de lentes</a></li>
                         <li><a href="#">Lentes de contacto</a></li>
-                        <li><a href="#">Reparaciones</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-column">
-                    <h4>Contacto</h4>
-                    <ul>
-                        <li><a href="#">Av. Miguel Alemán #123<br>Centro, Escobedo, NL</a></li>
-                        <li><a href="tel:+528112345678">📞 (81) 1234 5678</a></li>
-                        <li><a href="https://wa.me/528112345678">💬 WhatsApp Directo</a></li>
-                        <li><a href="#">Lun-Vie: 9:00 - 19:00<br>Sáb: 9:00 - 14:00</a></li>
+                        <li><a href="#">Armazones</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2026 Óptica Lumen Escobedo. Examen de la vista gratuito.</p>
+                <p>© 2026 Óptica Lumen Escobedo. Examen gratuito.</p>
                 <div class="social-links">
-                    <a href="#" aria-label="Facebook">f</a>
-                    <a href="#" aria-label="Instagram">📷</a>
-                    <a href="https://wa.me/528112345678" aria-label="WhatsApp">💬</a>
+                    <a href="#">f</a>
+                    <a href="#">📷</a>
+                    <a href="https://wa.me/528112345678">💬</a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Set minimum date to today
-        const dateInput = document.getElementById('fecha');
-        const today = new Date().toISOString().split('T')[0];
-        dateInput.setAttribute('min', today);
+        // Fecha mínima hoy
+        document.getElementById('fecha').min = new Date().toISOString().split('T')[0];
 
-        // Form submission handler
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            
-            const btn = e.target.querySelector('.submit-btn');
-            const originalText = btn.textContent;
-            
-            btn.textContent = '✓ Cita agendada. Te contactamos en breve.';
-            btn.style.background = '#10b981';
-            btn.style.color = 'white';
-            
+        // Tooltip WhatsApp
+        setTimeout(() => {
+            document.querySelector('.wa-tooltip').classList.add('show');
             setTimeout(() => {
-                btn.textContent = originalText;
-                btn.style.background = '';
-                btn.style.color = '';
-                e.target.reset();
-            }, 4000);
-        }
+                document.querySelector('.wa-tooltip').classList.remove('show');
+            }, 5000);
+        }, 2000);
 
-        // Show WhatsApp tooltip on mobile after 3 seconds
-        setTimeout(() => {
-            document.querySelector('.whatsapp-tooltip').classList.add('show');
-        }, 3000);
+        // Scroll indicator para catálogo
+        const scrollContainer = document.querySelector('.frames-scroll');
+        const dots = document.querySelectorAll('.scroll-dot');
+        
+        scrollContainer.addEventListener('scroll', () => {
+            const scrollLeft = scrollContainer.scrollLeft;
+            const cardWidth = 296; // 280 + 16 gap
+            const index = Math.round(scrollLeft / cardWidth);
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        });
 
-        // Hide tooltip after 5 seconds
-        setTimeout(() => {
-            document.querySelector('.whatsapp-tooltip').classList.remove('show');
-        }, 8000);
-
-        // Smooth scroll
+        // Smooth scroll para anchors
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
     </script>
