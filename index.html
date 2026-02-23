@@ -16,7 +16,7 @@
             --gray-200: #e2e8f0;
             --gray-600: #475569;
             --gray-800: #1e293b;
-            --accent: #3b82f6;
+            --accent: #25d366; /* WhatsApp green */
         }
 
         * {
@@ -36,12 +36,81 @@
             background-color: var(--white);
         }
 
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            z-index: 9999;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .whatsapp-tooltip {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: var(--navy-dark);
+            color: white;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s;
+            pointer-events: none;
+            z-index: 9998;
+            max-width: 200px;
+            text-align: center;
+        }
+
+        .whatsapp-tooltip::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            right: 20px;
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid var(--navy-dark);
+        }
+
+        .whatsapp-float:hover + .whatsapp-tooltip,
+        .whatsapp-tooltip.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* Navigation */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--gray-200);
             z-index: 1000;
@@ -169,33 +238,24 @@
             font-family: 'Playfair Display', serif;
             font-size: 3.5rem;
             color: var(--navy-dark);
-            line-height: 1.2;
+            line-height: 1.1;
             margin-bottom: 1.5rem;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .hero-content h1 span {
             color: var(--navy);
             position: relative;
-        }
-
-        .hero-content h1 span::after {
-            content: '';
-            position: absolute;
-            bottom: 5px;
-            left: 0;
-            width: 100%;
-            height: 8px;
-            background: rgba(59, 130, 246, 0.2);
-            z-index: -1;
+            display: block;
+            margin-top: 0.5rem;
         }
 
         .hero-subtitle {
             font-size: 1.25rem;
             color: var(--gray-600);
             margin-bottom: 2rem;
-            font-weight: 300;
-            line-height: 1.8;
+            font-weight: 400;
+            line-height: 1.7;
         }
 
         .hero-benefits {
@@ -226,63 +286,151 @@
             flex-shrink: 0;
         }
 
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
         .cta-primary {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
             background: var(--navy);
             color: white;
-            padding: 1rem 2.5rem;
+            padding: 1rem 2rem;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             transition: all 0.3s;
-            box-shadow: 0 4px 6px -1px rgba(30, 58, 95, 0.1);
+            box-shadow: 0 4px 6px -1px rgba(30, 58, 95, 0.2);
         }
 
         .cta-primary:hover {
             background: var(--navy-light);
             transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(30, 58, 95, 0.2);
+            box-shadow: 0 10px 15px -3px rgba(30, 58, 95, 0.3);
+        }
+
+        .cta-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #25d366;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px -1px rgba(37, 211, 102, 0.3);
+        }
+
+        .cta-whatsapp:hover {
+            background: #128c7e;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(37, 211, 102, 0.4);
         }
 
         .hero-image {
             position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
         }
 
         .hero-image img {
             width: 100%;
             height: 600px;
             object-fit: cover;
-            border-radius: 20px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+            display: block;
         }
 
         .floating-card {
             position: absolute;
             bottom: 40px;
-            left: -40px;
+            left: -30px;
             background: white;
-            padding: 1.5rem;
+            padding: 1.25rem 1.5rem;
             border-radius: 12px;
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            max-width: 280px;
+            max-width: 260px;
             border-left: 4px solid var(--navy);
+        }
+
+        .floating-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stars {
+            color: #fbbf24;
+            font-size: 0.9rem;
+            letter-spacing: -2px;
         }
 
         .floating-card h4 {
             color: var(--navy);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 0.5rem;
+            font-weight: 600;
         }
 
         .floating-card p {
             color: var(--gray-600);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Social Proof Bar */
+        .social-proof-bar {
+            background: var(--navy);
+            color: white;
+            padding: 1.25rem 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .social-proof-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .social-proof-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .social-proof-item strong {
+            font-size: 1.1rem;
+        }
+
+        .google-stars {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+
+        .google-logo {
+            font-weight: 700;
+            font-size: 1.1rem;
         }
 
         /* Services Section */
@@ -636,6 +784,46 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
+        .form-divider {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin: 0.5rem 0;
+            position: relative;
+        }
+
+        .form-divider::before {
+            content: 'O';
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+
+        .whatsapp-form-btn {
+            grid-column: 1 / -1;
+            background: #25d366;
+            color: white;
+            padding: 1.25rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .whatsapp-form-btn:hover {
+            background: #128c7e;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
         .form-note {
             text-align: center;
             margin-top: 1.5rem;
@@ -645,40 +833,6 @@
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-        }
-
-        /* Trust Indicators */
-        .trust-section {
-            padding: 4rem 0;
-            background: white;
-            border-top: 1px solid var(--gray-200);
-        }
-
-        .trust-grid {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-
-        .trust-item {
-            text-align: center;
-            padding: 1rem;
-        }
-
-        .trust-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--navy);
-            display: block;
-            line-height: 1;
-        }
-
-        .trust-label {
-            color: var(--gray-600);
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
         }
 
         /* Footer */
@@ -776,6 +930,7 @@
             .hero-container {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 3rem;
             }
 
             .hero-content h1 {
@@ -786,8 +941,14 @@
                 align-items: center;
             }
 
+            .cta-group {
+                justify-content: center;
+            }
+
             .hero-image {
                 order: -1;
+                max-width: 500px;
+                margin: 0 auto;
             }
 
             .hero-image img {
@@ -798,6 +959,13 @@
                 left: 20px;
                 right: 20px;
                 bottom: 20px;
+                max-width: none;
+            }
+
+            .social-proof-container {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
             }
 
             .services-grid {
@@ -815,6 +983,14 @@
             .footer-grid {
                 grid-template-columns: 1fr 1fr;
             }
+
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                font-size: 24px;
+                bottom: 20px;
+                right: 20px;
+            }
         }
 
         @media (max-width: 640px) {
@@ -830,8 +1006,18 @@
                 grid-template-columns: 1fr;
             }
 
-            .trust-grid {
+            .social-proof-container {
                 flex-direction: column;
+            }
+
+            .cta-group {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .cta-primary, .cta-whatsapp {
+                width: 100%;
+                justify-content: center;
             }
         }
 
@@ -855,6 +1041,14 @@
 </head>
 <body>
 
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/528112345678?text=Hola,%20vi%20su%20página%20y%20quiero%20agendar%20un%20examen%20de%20la%20vista%20gratuito" class="whatsapp-float" target="_blank" aria-label="Contactar por WhatsApp">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+    </a>
+    <div class="whatsapp-tooltip">¿Tienes dudas? Escríbenos por WhatsApp</div>
+
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
@@ -876,63 +1070,69 @@
     <section class="hero" id="inicio">
         <div class="hero-container">
             <div class="hero-content">
-                <h1>Tu salud visual es nuestra <span>prioridad</span></h1>
+                <h1>Vuelve a ver claro <span>hoy mismo</span></h1>
                 <p class="hero-subtitle">
-                    En Óptica Lumen Escobedo combinamos tecnología de precisión con atención humana. 
-                    Agenda hoy tu examen de la vista completamente gratuito y descubre el mundo con claridad.
+                    Examen de la vista gratuito en Escobedo. Sin compromiso de compra. 
+                    Resultados inmediatos y asesoría personalizada para encontrar la solución 
+                    perfecta para tus ojos.
                 </p>
                 
                 <div class="hero-benefits">
                     <div class="benefit-item">
                         <div class="benefit-icon">✓</div>
-                        <span>Examen optométrico completo sin costo</span>
+                        <span>Resultados en 20 minutos</span>
                     </div>
                     <div class="benefit-item">
                         <div class="benefit-icon">✓</div>
-                        <span>Equipamiento tecnológico de última generación</span>
+                        <span>Equipos digitales de precisión</span>
                     </div>
                     <div class="benefit-item">
                         <div class="benefit-icon">✓</div>
-                        <span>Optometristas certificados con 15+ años de experiencia</span>
+                        <span>Optometrista certificado COFEPRIS</span>
                     </div>
                 </div>
 
-                <a href="#agendar" class="cta-primary">
-                    Agendar Examen Gratuito
-                    <span>→</span>
-                </a>
+                <div class="cta-group">
+                    <a href="#agendar" class="cta-primary">
+                        Agendar mi examen gratis
+                        <span>→</span>
+                    </a>
+                    <a href="https://wa.me/528112345678?text=Hola,%20quiero%20agendar%20un%20examen%20de%20la%20vista" class="cta-whatsapp" target="_blank">
+                        <span>💬</span>
+                        WhatsApp Directo
+                    </a>
+                </div>
             </div>
 
             <div class="hero-image">
-                <img src="https://images.pexels.com/photos/29467509/pexels-photo-29467509/free-photo-of-stylish-eyewear-display-with-minimalist-aesthetic.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=800" alt="Examen de la vista profesional">
+                <img src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=800&q=80" alt="Paciente feliz con armazones modernos en Óptica Lumen Escobedo">
                 <div class="floating-card">
-                    <h4>Atención Personalizada</h4>
-                    <p>Cada paciente recibe un estudio completo de su salud visual y recomendaciones específicas para su estilo de vida.</p>
+                    <div class="floating-card-header">
+                        <span class="stars">★★★★★</span>
+                        <span style="color: var(--gray-600); font-size: 0.85rem;">4.9/5</span>
+                    </div>
+                    <p>"Me atendieron súper rápido y el doctor explicó todo muy bien. Mis lentes quedaron perfectos."</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--navy); font-weight: 600;">— María G., Escobedo</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Trust Indicators -->
-    <section class="trust-section">
-        <div class="container">
-            <div class="trust-grid">
-                <div class="trust-item">
-                    <span class="trust-number">15+</span>
-                    <div class="trust-label">Años de experiencia</div>
-                </div>
-                <div class="trust-item">
-                    <span class="trust-number">10k+</span>
-                    <div class="trust-label">Pacientes satisfechos</div>
-                </div>
-                <div class="trust-item">
-                    <span class="trust-number">50+</span>
-                    <div class="trust-label">Marcas de armazones</div>
-                </div>
-                <div class="trust-item">
-                    <span class="trust-number">100%</span>
-                    <div class="trust-label">Garantía de satisfacción</div>
-                </div>
+    <!-- Social Proof Bar -->
+    <section class="social-proof-bar">
+        <div class="social-proof-container">
+            <div class="social-proof-item">
+                <span style="font-size: 1.3rem;">👥</span>
+                <span><strong>+500 pacientes</strong> atendidos en Escobedo</span>
+            </div>
+            <div class="google-stars">
+                <span class="google-logo">G</span>
+                <span style="color: #fbbf24; letter-spacing: -2px;">★★★★★</span>
+                <span>4.9 en Google</span>
+            </div>
+            <div class="social-proof-item">
+                <span style="font-size: 1.3rem;">✓</span>
+                <span><strong>Examen sin costo</strong> • Sin compromiso</span>
             </div>
         </div>
     </section>
@@ -942,29 +1142,29 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">Nuestros Servicios</span>
-                <h2 class="section-title">Cuidado integral para tus ojos</h2>
+                <h2 class="section-title">Todo para tu salud visual</h2>
                 <p class="section-subtitle">
-                    Ofrecemos soluciones ópticas completas, desde la evaluación de tu salud visual hasta el ajuste perfecto de tus lentes.
+                    Desde el diagnóstico hasta el armazón perfecto. Un solo lugar, solución completa.
                 </p>
             </div>
 
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">👁</div>
-                    <h3>Graduación Ocular</h3>
-                    <p>Examen optométrico completo utilizando equipos computarizados de última generación. Evaluamos agudeza visual, refracción, salud ocular y presión intraocular.</p>
+                    <h3>Examen Computarizado</h3>
+                    <p>Evaluación completa de agudeza, refracción y salud ocular con equipos digitales. Resultados precisos en minutos, no en días.</p>
                 </div>
 
                 <div class="service-card">
                     <div class="service-icon">👓</div>
                     <h3>Lentes de Contacto</h3>
-                    <p>Especialistas en adaptación de lentes de contacto. Ofrecemos opciones de hidrogel, silicona hidrogel y tóricos para astigmatismo con seguimiento personalizado.</p>
+                    <p>Adaptación especializada con prueba gratuita. Manejamos tóricos para astigmatismo y multifocales. Incluye kit de inicio.</p>
                 </div>
 
                 <div class="service-card">
                     <div class="service-icon">🔧</div>
-                    <h3>Reparación y Ajuste</h3>
-                    <p>Servicio técnico especializado en reparación de armazones, cambio de plaquetas, ajuste de varillas y mantenimiento preventivo de tus lentes.</p>
+                    <h3>Ajuste y Reparación</h3>
+                    <p>Ajuste profesional de armazones, cambio de plaquetas, soldadura y mantenimiento. Garantía de adaptación incluida.</p>
                 </div>
             </div>
         </div>
@@ -975,61 +1175,61 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">Catálogo</span>
-                <h2 class="section-title">Armazones destacados</h2>
+                <h2 class="section-title">Armazones que se ven bien en ti</h2>
                 <p class="section-subtitle">
-                    Selección curada de las mejores marcas internacionales. Diseños que combinan estética, durabilidad y confort.
+                    Prueba antes de comprar. Tenemos espejos de realidad aumentada y asesoría de estilo incluida.
                 </p>
             </div>
 
             <div class="frames-grid">
                 <div class="frame-card">
                     <div class="frame-image">
+                        <span class="frame-badge">Más vendido</span>
+                        <img src="https://images.pexels.com/photos/28881363/pexels-photo-28881363/free-photo-of-stylish-eyeglasses-on-minimalist-beige-background.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=400" alt="Armazón clásico elegante">
+                    </div>
+                    <div class="frame-info">
+                        <div class="frame-brand">Diseño Italiano</div>
+                        <div class="frame-name">Classic Titanium</div>
+                        <div class="frame-price">Desde $1,890</div>
+                    </div>
+                </div>
+
+                <div class="frame-card">
+                    <div class="frame-image">
+                        <img src="https://images.pexels.com/photos/29467509/pexels-photo-29467509/free-photo-of-stylish-eyewear-display-with-minimalist-aesthetic.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=400" alt="Armazón moderno urbano">
+                    </div>
+                    <div class="frame-info">
+                        <div class="frame-brand">Estilo Coreano</div>
+                        <div class="frame-name">Seoul Transparent</div>
+                        <div class="frame-price">Desde $1,450</div>
+                    </div>
+                </div>
+
+                <div class="frame-card">
+                    <div class="frame-image">
                         <span class="frame-badge">Nuevo</span>
-                        <img src="https://images.pexels.com/photos/28881363/pexels-photo-28881363/free-photo-of-stylish-eyeglasses-on-minimalist-beige-background.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=400" alt="Armazón Clásico">
+                        <img src="https://images.pexels.com/photos/28881363/pexels-photo-28881363/free-photo-of-stylish-eyeglasses-on-minimalist-beige-background.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=400" alt="Armazón premium ejecutivo">
                     </div>
                     <div class="frame-info">
-                        <div class="frame-brand">Ray-Ban</div>
-                        <div class="frame-name">Round Metal Classic</div>
-                        <div class="frame-price">$2,450 MXN</div>
+                        <div class="frame-brand">Línea Ejecutiva</div>
+                        <div class="frame-name">CEO Navy Blue</div>
+                        <div class="frame-price">Desde $2,340</div>
                     </div>
                 </div>
 
                 <div class="frame-card">
                     <div class="frame-image">
-                        <img src="https://images.pexels.com/photos/29467509/pexels-photo-29467509/free-photo-of-stylish-eyewear-display-with-minimalist-aesthetic.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=400" alt="Armazón Moderno">
+                        <img src="https://images.pexels.com/photos/29467509/pexels-photo-29467509/free-photo-of-stylish-eyewear-display-with-minimalist-aesthetic.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=400" alt="Armazón deportivo resistente">
                     </div>
                     <div class="frame-info">
-                        <div class="frame-brand">Oakley</div>
-                        <div class="frame-name">Holbrook XL</div>
-                        <div class="frame-price">$3,200 MXN</div>
-                    </div>
-                </div>
-
-                <div class="frame-card">
-                    <div class="frame-image">
-                        <span class="frame-badge">Oferta</span>
-                        <img src="https://images.pexels.com/photos/28881363/pexels-photo-28881363/free-photo-of-stylish-eyeglasses-on-minimalist-beige-background.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=400" alt="Armazón Elegante">
-                    </div>
-                    <div class="frame-info">
-                        <div class="frame-brand">Vogue</div>
-                        <div class="frame-name">VOGUE 5356</div>
-                        <div class="frame-price">$1,890 MXN</div>
-                    </div>
-                </div>
-
-                <div class="frame-card">
-                    <div class="frame-image">
-                        <img src="https://images.pexels.com/photos/29467509/pexels-photo-29467509/free-photo-of-stylish-eyewear-display-with-minimalist-aesthetic.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=400" alt="Armazón Premium">
-                    </div>
-                    <div class="frame-info">
-                        <div class="frame-brand">Tom Ford</div>
-                        <div class="frame-name">FT5681-B</div>
-                        <div class="frame-price">$5,600 MXN</div>
+                        <div class="frame-brand">Active Sport</div>
+                        <div class="frame-name">Runner Flex</div>
+                        <div class="frame-price">Desde $1,990</div>
                     </div>
                 </div>
             </div>
 
-            <a href="#" class="view-all-btn">Ver catálogo completo</a>
+            <a href="https://wa.me/528112345678?text=Hola,%20quiero%20ver%20más%20modelos%20de%20armazones" class="view-all-btn" target="_blank">Ver más modelos por WhatsApp</a>
         </div>
     </section>
 
@@ -1040,66 +1240,57 @@
                 <span class="section-tag" style="color: white;">Reserva tu cita</span>
                 <h2 class="section-title">Agenda tu examen gratuito</h2>
                 <p class="section-subtitle">
-                    Completa el formulario y nuestro equipo se pondrá en contacto contigo para confirmar tu cita en menos de 24 horas.
+                    Elige la forma más cómoda para ti. Respondemos en minutos por WhatsApp o confirma tu cita aquí.
                 </p>
             </div>
 
-            <form class="appointment-form">
+            <form class="appointment-form" onsubmit="handleFormSubmit(event)">
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="nombre">Nombre completo *</label>
-                        <input type="text" id="nombre" name="nombre" placeholder="Ej. María González" required>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ej. Carlos Méndez" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="telefono">Teléfono *</label>
+                        <label for="telefono">WhatsApp *</label>
                         <input type="tel" id="telefono" name="telefono" placeholder="(81) 1234 5678" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Correo electrónico</label>
-                        <input type="email" id="email" name="email" placeholder="maria@email.com">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="fecha">Fecha preferida *</label>
+                        <label for="fecha">Fecha que prefieres *</label>
                         <input type="date" id="fecha" name="fecha" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="horario">Horario preferido *</label>
+                        <label for="horario">Horario *</label>
                         <select id="horario" name="horario" required>
-                            <option value="">Selecciona un horario</option>
-                            <option value="morning">09:00 - 12:00 hrs</option>
-                            <option value="afternoon">12:00 - 15:00 hrs</option>
-                            <option value="evening">15:00 - 19:00 hrs</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="motivo">Motivo de consulta</label>
-                        <select id="motivo" name="motivo">
-                            <option value="">Selecciona una opción</option>
-                            <option value="primera">Primera vez / Revisión general</option>
-                            <option value="cambio">Cambio de fórmula</option>
-                            <option value="dolor">Dolor o molestia ocular</option>
-                            <option value="lentes">Adaptación de lentes de contacto</option>
+                            <option value="">Selecciona</option>
+                            <option value="morning">Mañana (9:00 - 12:00)</option>
+                            <option value="afternoon">Tarde (12:00 - 15:00)</option>
+                            <option value="evening">Evening (15:00 - 19:00)</option>
                         </select>
                     </div>
 
                     <div class="form-group full-width">
-                        <label for="mensaje">Mensaje adicional (opcional)</label>
-                        <textarea id="mensaje" name="mensaje" rows="3" placeholder="¿Hay algo específico que debamos saber sobre tu salud visual?"></textarea>
+                        <label for="mensaje">¿Qué te gustaría revisar? (opcional)</label>
+                        <textarea id="mensaje" name="mensaje" rows="2" placeholder="Ej. Tengo dolor de cabeza frecuente, quiero cambiar mis lentes, etc."></textarea>
                     </div>
 
                     <button type="submit" class="submit-btn">
                         Confirmar mi cita gratuita
                     </button>
+
+                    <div class="form-divider"></div>
+
+                    <a href="https://wa.me/528112345678?text=Hola,%20quiero%20agendar%20un%20examen%20de%20la%20vista%20gratuito" class="whatsapp-form-btn" target="_blank">
+                        <span>💬</span>
+                        Prefiero agendar por WhatsApp
+                    </a>
                 </div>
 
                 <div class="form-note">
                     <span>🔒</span>
-                    <span>Tus datos están protegidos. Solo los utilizamos para contactarte sobre tu cita.</span>
+                    <span>Tus datos solo los usa nuestro optometrista para confirmar tu cita</span>
                 </div>
             </form>
         </div>
@@ -1115,8 +1306,9 @@
                         Óptica Lumen
                     </a>
                     <p>
-                        Comprometidos con la salud visual de la comunidad de Escobedo y zona metropolitana de Monterrey. 
-                        Tecnología de precisión, atención humana.
+                        Especialistas en salud visual en Escobedo, NL. Más de 500 familias 
+                        confían en nosotros para ver el mundo con claridad. Examen gratuito, 
+                        sin compromiso de compra.
                     </p>
                 </div>
 
@@ -1144,26 +1336,60 @@
                     <h4>Contacto</h4>
                     <ul>
                         <li><a href="#">Av. Miguel Alemán #123<br>Centro, Escobedo, NL</a></li>
-                        <li><a href="tel:+528112345678">(81) 1234 5678</a></li>
-                        <li><a href="mailto:info@opticalumen.com">info@opticalumen.com</a></li>
+                        <li><a href="tel:+528112345678">📞 (81) 1234 5678</a></li>
+                        <li><a href="https://wa.me/528112345678">💬 WhatsApp Directo</a></li>
                         <li><a href="#">Lun-Vie: 9:00 - 19:00<br>Sáb: 9:00 - 14:00</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2026 Óptica Lumen Escobedo. Todos los derechos reservados.</p>
+                <p>&copy; 2026 Óptica Lumen Escobedo. Examen de la vista gratuito.</p>
                 <div class="social-links">
                     <a href="#" aria-label="Facebook">f</a>
                     <a href="#" aria-label="Instagram">📷</a>
-                    <a href="#" aria-label="WhatsApp">📱</a>
+                    <a href="https://wa.me/528112345678" aria-label="WhatsApp">💬</a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scroll for navigation links
+        // Set minimum date to today
+        const dateInput = document.getElementById('fecha');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+
+        // Form submission handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            const btn = e.target.querySelector('.submit-btn');
+            const originalText = btn.textContent;
+            
+            btn.textContent = '✓ Cita agendada. Te contactamos en breve.';
+            btn.style.background = '#10b981';
+            btn.style.color = 'white';
+            
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = '';
+                btn.style.color = '';
+                e.target.reset();
+            }, 4000);
+        }
+
+        // Show WhatsApp tooltip on mobile after 3 seconds
+        setTimeout(() => {
+            document.querySelector('.whatsapp-tooltip').classList.add('show');
+        }, 3000);
+
+        // Hide tooltip after 5 seconds
+        setTimeout(() => {
+            document.querySelector('.whatsapp-tooltip').classList.remove('show');
+        }, 8000);
+
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1176,31 +1402,6 @@
                 }
             });
         });
-
-        // Form submission handler
-        document.querySelector('.appointment-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Create success message
-            const btn = this.querySelector('.submit-btn');
-            const originalText = btn.textContent;
-            
-            btn.textContent = '✓ Cita agendada correctamente';
-            btn.style.background = '#10b981';
-            btn.style.color = 'white';
-            
-            setTimeout(() => {
-                btn.textContent = originalText;
-                btn.style.background = '';
-                btn.style.color = '';
-                this.reset();
-            }, 3000);
-        });
-
-        // Set minimum date to today
-        const dateInput = document.getElementById('fecha');
-        const today = new Date().toISOString().split('T')[0];
-        dateInput.setAttribute('min', today);
     </script>
 
 </body>
